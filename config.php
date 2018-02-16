@@ -15,7 +15,7 @@
 	// Choose a passphrase and find the sha256 hash of that passphrase.
 	// You can use an online calculator to generate the hash: http://www.xorbin.com/tools/sha256-hash-calculator.
 	// Unless you are using an SSL connection to your server, remember that passphrases can still be obtained via a man-in-the-middle attack.
-	$APPROVED_HASH = "YOUR HASH HERE";
+	$APPROVED_HASH = "0bbba2ddf9e308360859a4b0ceb9c19563a9bb797a9a068cbee7cfbb685c0dab";
 
 	// This is the number of times that the WOL server will try to ping the target computer to check if it has woken up. Default = 15.
 	$MAX_PINGS = 15;
@@ -23,13 +23,13 @@
 	$SLEEP_TIME = 5;
 
 	// This is the Name of the computers to appear in the drop down
-	$COMPUTER_NAME = array("computer1","computer2");
+	$COMPUTER_NAME = array($_ENV["COMPUTER_NAME"]);
 
 	// This is the MAC address of the Network Interface on the computer you are trying to wake.
-	$COMPUTER_MAC = array("00:00:00:00:00:00","00:00:00:00:00:00");
+	$COMPUTER_MAC = array($_ENV["COMPUTER_MAC"]);
 
 	// This is the LOCAL IP address of the computer you are trying to wake.  Use a reserved DHCP through your router's administration interface to ensure it doesn't change.
-	$COMPUTER_LOCAL_IP = array("192.168.0.1","192.168.0.2");
+	$COMPUTER_LOCAL_IP = array($_ENV["COMPUTER_LOCAL_IP"]);
 
 	// This is the Port being used by the Windows SleepOnLan Utility to initiate a Sleep State
 	// http://www.ireksoftware.com/SleepOnLan/
