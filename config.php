@@ -10,7 +10,7 @@
 	*/
 
 	// Set the below to "true" (no quotes) to enforce HTTPS connections (don't forget to create a self-signed cert and enable it in Apache2)
-	$USE_HTTPS = false;
+	$USE_HTTPS = $_ENV["USE_HTTPS"];
 
 	// Choose a passphrase and find the sha256 hash of that passphrase.
 	// You can use an online calculator to generate the hash: http://www.xorbin.com/tools/sha256-hash-calculator.
@@ -18,28 +18,28 @@
 	$APPROVED_HASH = $_ENV["APPROVED_HASH"];
 
 	// This is the number of times that the WOL server will try to ping the target computer to check if it has woken up. Default = 15.
-	$MAX_PINGS = 15;
+	$MAX_PINGS = $_ENV["MAX_PINGS"];// default 15
 	// This is the number of seconds to wait between pings commands when waking up or sleeping. Waking from shutdown or sleep will impact this.
-	$SLEEP_TIME = 5;
+	$SLEEP_TIME = $_ENV["SLEEP_TIME"];// default 5
 
 	// This is the Name of the computers to appear in the drop down
-	$COMPUTER_NAME = array($_ENV["COMPUTER_NAME"]);
+	$COMPUTER_NAME = array(split(",", $_ENV["COMPUTER_NAME"]));
 
 	// This is the MAC address of the Network Interface on the computer you are trying to wake.
-	$COMPUTER_MAC = array($_ENV["COMPUTER_MAC"]);
+	$COMPUTER_MAC = array(split(",", $_ENV["COMPUTER_MAC"]));
 
 	// This is the LOCAL IP address of the computer you are trying to wake.  Use a reserved DHCP through your router's administration interface to ensure it doesn't change.
-	$COMPUTER_LOCAL_IP = array($_ENV["COMPUTER_LOCAL_IP"]);
+	$COMPUTER_LOCAL_IP = array(split(",", $_ENV["COMPUTER_LOCAL_IP"]));
 
 	// This is the Port being used by the Windows SleepOnLan Utility to initiate a Sleep State
 	// http://www.ireksoftware.com/SleepOnLan/
 	// Alternate Download Link: http://www.jeremyblum.com/wp-content/uploads/2013/07/SleepOnLan.zip
-	$COMPUTER_SLEEP_CMD_PORT = 7760;
+	$COMPUTER_SLEEP_CMD_PORT = $_ENV["COMPUTER_SLEEP_CMD_PORT"]; //default 7760
 
 	// Command to be issued by the windows sleeponlan utility
 	// options are suspend, hibernate, logoff, poweroff, forcepoweroff, lock, reboot
 	// You can create a windows scheduled task that starts sleeponlan.exe on boot with following startup parameters /auto /port=7760
-	$COMPUTER_SLEEP_CMD = "suspend";
+	$COMPUTER_SLEEP_CMD = $_ENV["COMPUTER_SLEEP_CMD"]; //default suspend
 
 	// This is the location of the bootstrap style folder relative to your index and config file. Default = "" (Same folder as this file)
 	// Directory must be called "bootstrap". You may wish to move if this WOL script is the "child" of a larger web project on your Pi, that will also use bootstrap styling.
