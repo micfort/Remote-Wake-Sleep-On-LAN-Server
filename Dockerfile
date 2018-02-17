@@ -1,7 +1,7 @@
 # Use an official Python runtime as a parent image
 FROM php:7.0-apache
 
-COPY . /var/www/html/
+COPY ./src /
 
 RUN apt-get update && apt-get install -y \
     wakeonlan \
