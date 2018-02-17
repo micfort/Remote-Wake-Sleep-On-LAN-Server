@@ -10,7 +10,7 @@
 	*/
 
 	// Set the below to "true" (no quotes) to enforce HTTPS connections (don't forget to create a self-signed cert and enable it in Apache2)
-	$USE_HTTPS = $_ENV["USE_HTTPS"];
+	$USE_HTTPS = $_ENV["USE_HTTPS"]=="true"?true:false;
 
 	// Choose a passphrase and find the sha256 hash of that passphrase.
 	// You can use an online calculator to generate the hash: http://www.xorbin.com/tools/sha256-hash-calculator.
@@ -23,13 +23,13 @@
 	$SLEEP_TIME = $_ENV["SLEEP_TIME"];// default 5
 
 	// This is the Name of the computers to appear in the drop down
-	$COMPUTER_NAME = array(split(",", $_ENV["COMPUTER_NAME"]));
+	$COMPUTER_NAME = explode(",", $_ENV["COMPUTER_NAME"]);
 
 	// This is the MAC address of the Network Interface on the computer you are trying to wake.
-	$COMPUTER_MAC = array(split(",", $_ENV["COMPUTER_MAC"]));
+	$COMPUTER_MAC = explode(",", $_ENV["COMPUTER_MAC"]);
 
 	// This is the LOCAL IP address of the computer you are trying to wake.  Use a reserved DHCP through your router's administration interface to ensure it doesn't change.
-	$COMPUTER_LOCAL_IP = array(split(",", $_ENV["COMPUTER_LOCAL_IP"]));
+	$COMPUTER_LOCAL_IP = explode(",", $_ENV["COMPUTER_LOCAL_IP"]);
 
 	// This is the Port being used by the Windows SleepOnLan Utility to initiate a Sleep State
 	// http://www.ireksoftware.com/SleepOnLan/
@@ -47,4 +47,5 @@
 	// Two directories up? Set too "../../"
 	// etc...
 	$BOOTSTRAP_LOCATION_PREFIX = "";
+
 ?>

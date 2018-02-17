@@ -161,7 +161,7 @@ else
 						document.getElementById('wait').style.display = 'none';
 				        </script>
 	   					<?php
-					if ($pinginfo == "")
+					if ($pinginfo == "1 packets transmitted, 0 packets received, 100% packet loss")
 					{
 						$asleep = true;
 						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is presently asleep.</h5>";
@@ -187,7 +187,7 @@ else
 						echo "Ping " . $count . "...";
 						$pinginfo = exec("ping -c 1 " . $COMPUTER_LOCAL_IP[$selectedComputer]);
 						$count++;
-						if ($pinginfo != "")
+						if ($pinginfo != "1 packets transmitted, 0 packets received, 100% packet loss")
 						{
 							$down = false;
 							echo "<span style='color:#00CC00;'><b>It's Alive!</b></span><br />";
@@ -228,7 +228,7 @@ else
 							echo "Ping " . $count . "...";
 							$pinginfo = exec("ping -c 1 " . $COMPUTER_LOCAL_IP[$selectedComputer]);
 							$count++;
-							if ($pinginfo == "")
+							if ($pinginfo == "1 packets transmitted, 0 packets received, 100% packet loss")
 							{
 								$down = true;
 								echo "<span style='color:#00CC00;'><b>It's Asleep!</b></span><br />";
